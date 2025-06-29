@@ -3,8 +3,16 @@ const cors = require("cors");
 const {MongoClient} = require("mongodb");
 require("dotenv").config();
 
+const corsOptions = {
+  origin: ["http://localhost:3000", "http://localhost:3001"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+};
+
+
 const app = express();
 app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.post("/ss",(req,res) => {
